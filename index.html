@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LARAPÊ | Você pede. A gente cuida.</title>
+  <meta name="description" content="Serviços de limpeza e manutenção do lar. Você pede. A gente cuida.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="nav">
+    <a href="#" class="logo"><img src="assets/logo-larape.jpg" alt="LARAPÊ"></a>
+
+    <nav class="desktop-menu">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#sobre">Sobre a LARAPÊ</a>
+      <a href="#trabalhe">Trabalhe conosco</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="#entrar" class="login">Entrar</a>
+      <a href="#solicitar" class="btn btn-primary">Solicitar serviço</a>
+    </div>
+
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#servicos">Serviços</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#sobre">Sobre a LARAPÊ</a>
+    <a href="#trabalhe">Trabalhe conosco</a>
+    <a href="#entrar">Entrar</a>
+    <a href="#solicitar" class="btn btn-primary">Solicitar serviço</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="eyebrow">CUIDADO PARA O SEU LAR</span>
+    <h1>Você pede.<br><span>A gente cuida.</span></h1>
+    <p>
+      Serviços de limpeza e manutenção residencial com profissionais selecionados
+      e acompanhamento da LARAPÊ em cada etapa.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#solicitar" class="btn btn-primary btn-large">Solicitar um serviço →</a>
+      <a href="#como-funciona" class="btn btn-light btn-large">Como funciona</a>
+    </div>
+
+    <div class="trust">
+      <div class="trust-item"><strong>✓</strong> Profissionais selecionados</div>
+      <div class="trust-item"><strong>✓</strong> Atendimento acompanhado</div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="blob"></div>
+    <div class="home-card">
+      <div class="mini-icon">🏡</div>
+      <strong>Seu lar em boas mãos</strong>
+      <span>Limpeza e manutenção</span>
+    </div>
+    <div class="spark spark-one">✦</div>
+    <div class="spark spark-two">✦</div>
+  </div>
+</section>
+
+<section class="services section" id="servicos">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">NOSSOS SERVIÇOS</span>
+      <h2>O que sua casa precisa hoje?</h2>
+    </div>
+    <p>Escolha um serviço e conte para a gente como podemos ajudar.</p>
+  </div>
+
+  <div class="service-grid">
+    <button class="service-card active" onclick="selectService('Limpeza')">
+      <span class="service-icon">🧹</span>
+      <strong>Limpeza</strong>
+      <small>Residencial, pesada e mais</small>
+      <span class="arrow">→</span>
+    </button>
+
+    <button class="service-card active" onclick="selectService('Manutenção')">
+      <span class="service-icon">🔧</span>
+      <strong>Manutenção</strong>
+      <small>Cuidados e pequenos reparos</small>
+      <span class="arrow">→</span>
+    </button>
+
+    <button class="service-card soon">
+      <span class="service-icon">❄️</span>
+      <strong>Ar-condicionado</strong>
+      <small>Em breve</small>
+      <span class="soon-label">Em breve</span>
+    </button>
+
+    <button class="service-card soon">
+      <span class="service-icon">⚡</span>
+      <strong>Elétrica</strong>
+      <small>Em breve</small>
+      <span class="soon-label">Em breve</span>
+    </button>
+
+    <button class="service-card soon">
+      <span class="service-icon">💧</span>
+      <strong>Hidráulica</strong>
+      <small>Em breve</small>
+      <span class="soon-label">Em breve</span>
+    </button>
+
+    <button class="service-card soon">
+      <span class="service-icon">🌿</span>
+      <strong>Jardim</strong>
+      <small>Em breve</small>
+      <span class="soon-label">Em breve</span>
+    </button>
+  </div>
+</section>
+
+<section class="how section" id="como-funciona">
+  <div class="section-heading centered">
+    <span class="eyebrow">SIMPLES E TRANQUILO</span>
+    <h2>Como funciona?</h2>
+    <p>Da solicitação até o serviço concluído, a LARAPÊ acompanha tudo.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <span>01</span>
+      <div class="step-icon">📋</div>
+      <h3>Você solicita</h3>
+      <p>Conte o que sua casa precisa, escolha o endereço e a melhor data.</p>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step">
+      <span>02</span>
+      <div class="step-icon">🤝</div>
+      <h3>A gente organiza</h3>
+      <p>A LARAPÊ analisa o pedido e seleciona uma profissional adequada.</p>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step">
+      <span>03</span>
+      <div class="step-icon">🏠</div>
+      <h3>Seu lar recebe cuidado</h3>
+      <p>Você acompanha o pedido até a conclusão do atendimento.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about section" id="sobre">
+  <div class="about-box">
+    <div>
+      <span class="eyebrow">LARAPÊ</span>
+      <h2>Mais cuidado.<br>Mais tranquilidade.</h2>
+      <p>
+        A LARAPÊ nasceu para tornar mais simples encontrar serviços para o lar.
+        Nossa proposta é unir praticidade, proximidade e acompanhamento.
+      </p>
+      <a href="#solicitar" class="btn btn-primary">Quero cuidar da minha casa</a>
+    </div>
+
+    <div class="about-badges">
+      <div><strong>01</strong><span>Profissionais<br>selecionados</span></div>
+      <div><strong>02</strong><span>Atendimento<br>acompanhado</span></div>
+      <div><strong>03</strong><span>Experiência<br>simples</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="careers section" id="trabalhe">
+  <div class="careers-box">
+    <div class="careers-copy">
+      <span class="eyebrow">FAÇA PARTE DA LARAPÊ</span>
+      <h2>Quer trabalhar com a gente?</h2>
+      <p>Estamos formando uma equipe de profissionais para atender nossos clientes com cuidado, responsabilidade e qualidade.</p>
+      <div class="careers-points">
+        <div><span>✓</span> Cadastro do seu perfil profissional</div>
+        <div><span>✓</span> Envio do currículo para nossa equipe</div>
+        <div><span>✓</span> Entrevista antes da aprovação</div>
+      </div>
+    </div>
+
+    <form class="career-form" id="careerForm">
+      <div class="form-grid">
+        <div class="field full"><label for="careerName">Nome completo *</label><input id="careerName" required type="text" placeholder="Seu nome completo"></div>
+        <div class="field"><label for="careerPhone">WhatsApp *</label><input id="careerPhone" required type="tel" placeholder="(00) 00000-0000"></div>
+        <div class="field"><label for="careerCity">Cidade/Bairro *</label><input id="careerCity" required type="text" placeholder="Ex.: Florianópolis / Centro"></div>
+        <div class="field full"><label for="careerArea">Área de interesse *</label><select id="careerArea" required><option value="">Selecione</option><option>Faxina / Limpeza</option><option>Manutenção</option><option>Ambos</option></select></div>
+        <div class="field full"><label for="careerExperience">Experiência profissional *</label><textarea id="careerExperience" required rows="3" placeholder="Conte brevemente sobre sua experiência e os serviços que realiza."></textarea></div>
+        <div class="field full"><label for="careerAvailability">Disponibilidade *</label><input id="careerAvailability" required type="text" placeholder="Ex.: segunda a sábado, manhã e tarde"></div>
+        <div class="field full"><label for="careerCv">Currículo *</label><input id="careerCv" required type="file" accept=".pdf,application/pdf"><small>Envie seu currículo em PDF.</small></div>
+        <div class="field full"><label for="careerNotes">Observações</label><textarea id="careerNotes" rows="2" placeholder="Alguma informação que gostaria de acrescentar?"></textarea></div>
+      </div>
+      <label class="consent"><input id="careerConsent" required type="checkbox"> <span>Autorizo a LARAPÊ a utilizar os dados enviados para fins de seleção e contato profissional.</span></label>
+      <button class="btn btn-primary btn-large" type="submit">Enviar meu currículo →</button>
+      <p class="form-note">Após o envio, nossa equipe poderá entrar em contato para uma entrevista. O cadastro não garante aprovação na equipe.</p>
+    </form>
+  </div>
+</section>
+
+<section class="cta" id="solicitar">
+  <div>
+    <span class="eyebrow">COMECE AGORA</span>
+    <h2>O que sua casa precisa?</h2>
+    <p>Solicite um serviço e deixe o resto com a LARAPÊ.</p>
+  </div>
+  <button class="btn btn-white btn-large" onclick="selectService('Limpeza')">Solicitar serviço →</button>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <img src="assets/logo-larape.jpg" alt="LARAPÊ">
+    <span>Serviços de limpeza e manutenção do lar</span>
+    <span>© 2026 LARAPÊ</span>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box wizard">
+    <button class="close" onclick="closeModal()">×</button>
+
+    <div class="wizard-top">
+      <div>
+        <span class="eyebrow">NOVO PEDIDO</span>
+        <h2 id="modalTitle">Solicitar serviço</h2>
+      </div>
+      <span class="step-count" id="stepCount">1 de 4</span>
+    </div>
+
+    <div class="progress"><span id="progressBar"></span></div>
+
+    <div class="wizard-step active" data-step="1">
+      <p>Primeiro, escolha o que você precisa.</p>
+      <div class="choice-grid">
+        <button class="choice" data-service="Limpeza" onclick="chooseService('Limpeza')">
+          <span>🧹</span><strong>Limpeza</strong><small>Cuidados para sua casa</small>
+        </button>
+        <button class="choice" data-service="Manutenção" onclick="chooseService('Manutenção')">
+          <span>🔧</span><strong>Manutenção</strong><small>Pequenos reparos e cuidados</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="wizard-step" data-step="2">
+      <p>Conte um pouco mais sobre o serviço.</p>
+      <label>Tipo de atendimento</label>
+      <select id="detailType">
+        <option>Limpeza residencial</option>
+        <option>Limpeza pesada</option>
+        <option>Manutenção geral</option>
+        <option>Outro</option>
+      </select>
+      <label>Observações</label>
+      <textarea id="notes" rows="4" placeholder="Ex.: quantidade de quartos, alguma necessidade especial..."></textarea>
+      <div class="wizard-actions">
+        <button class="btn btn-light" onclick="prevStep()">← Voltar</button>
+        <button class="btn btn-primary" onclick="nextStep()">Continuar →</button>
+      </div>
+    </div>
+
+    <div class="wizard-step" data-step="3">
+      <p>Onde e quando você gostaria do atendimento?</p>
+      <label>Endereço</label>
+      <input id="address" type="text" placeholder="Rua, número, bairro">
+      <div class="two-cols">
+        <div><label>Data</label><input id="date" type="date"></div>
+        <div><label>Horário</label><input id="time" type="time"></div>
+      </div>
+      <div class="wizard-actions">
+        <button class="btn btn-light" onclick="prevStep()">← Voltar</button>
+        <button class="btn btn-primary" onclick="nextStep()">Continuar →</button>
+      </div>
+    </div>
+
+    <div class="wizard-step" data-step="4">
+      <p>Por fim, como podemos falar com você?</p>
+      <label>Nome</label>
+      <input id="name" type="text" placeholder="Seu nome">
+      <label>WhatsApp</label>
+      <input id="phone" type="tel" placeholder="(00) 00000-0000">
+      <div class="summary" id="summary"></div>
+      <div class="wizard-actions">
+        <button class="btn btn-light" onclick="prevStep()">← Voltar</button>
+        <button class="btn btn-primary" onclick="finishRequest()">Enviar pedido ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LARAPÊ | Painel Administrativo</title><link rel="stylesheet" href="admin.css">
+</head><body>
+<aside class="sidebar">
+  <div class="brand"><img src="assets/logo-larape.jpg" alt="LARAPÊ"></div>
+  <div class="side-title">ADMINISTRAÇÃO</div>
+  <nav>
+    <button class="side-link active" data-view="dashboard">📊 Visão geral</button>
+    <button class="side-link" data-view="candidaturas">👩‍💼 Candidaturas <span id="sideCount">0</span></button>
+    <button class="side-link" data-view="profissionais">👩‍🔧 Profissionais</button>
+    <button class="side-link" data-view="pedidos">📋 Pedidos</button>
+  </nav>
+  <a class="back" href="index.html">← Voltar ao site</a>
+</aside>
+<main class="main">
+  <header class="top"><div><span class="eyebrow">LARAPÊ</span><h1 id="pageTitle">Visão geral</h1></div><div class="admin-chip">Painel administrativo</div></header>
+
+  <section class="view active" id="dashboard">
+    <div class="cards">
+      <div class="card"><span>Candidaturas</span><strong id="totalCandidates">0</strong><small>Recebidas neste navegador</small></div>
+      <div class="card"><span>Em análise</span><strong id="analysisCandidates">0</strong><small>Aguardando avaliação</small></div>
+      <div class="card"><span>Entrevistas</span><strong id="interviewCandidates">0</strong><small>Selecionadas para entrevista</small></div>
+      <div class="card"><span>Aprovadas</span><strong id="approvedCandidates">0</strong><small>Profissionais aprovadas</small></div>
+    </div>
+    <div class="panel"><div class="panel-head"><div><h2>Últimas candidaturas</h2><p>Revise os cadastros recebidos pelo formulário do site.</p></div><button class="btn" data-go="candidaturas">Ver candidaturas</button></div><div id="recentList"></div></div>
+  </section>
+
+  <section class="view" id="candidaturas">
+    <div class="panel"><div class="panel-head"><div><h2>Candidaturas</h2><p>Fluxo: Em análise → Entrevista → Aprovada/Reprovada.</p></div></div><div class="table-wrap"><table><thead><tr><th>Nome</th><th>Área</th><th>Local</th><th>WhatsApp</th><th>Status</th><th>Currículo</th><th>Ações</th></tr></thead><tbody id="candidateTable"></tbody></table></div></div>
+  </section>
+
+  <section class="view" id="profissionais">
+    <div class="panel"><div class="panel-head"><div><h2>Profissionais aprovadas</h2><p>Somente candidaturas aprovadas aparecem aqui.</p></div></div><div id="approvedList" class="people"></div></div>
+  </section>
+
+  <section class="view" id="pedidos">
+    <div class="empty"><div>📋</div><h2>Pedidos de clientes</h2><p>Esta área será conectada ao sistema de pedidos na próxima etapa.</p></div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="admin.js"></script>
+</body></html>
