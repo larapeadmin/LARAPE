@@ -1,137 +1,70 @@
 const modal = document.getElementById("modal");
 const toast = document.getElementById("toast");
-const serviceSelect = document.getElementById("serviceSelect");
-
 let currentStep = 1;
 let selectedService = "Limpeza";
 
-function openWizard(service = "Limpeza") {
-  selectedService = service;
-  currentStep = 1;
-  document.querySelectorAll(".choice").forEach(b => b.classList.toggle("selected", b.dataset.service === service));
+const translations = {
+  pt: {
+    nav_services:"Serviços", nav_how:"Como funciona", nav_about:"Sobre a LARAPÊ", nav_careers:"Trabalhe conosco", nav_login:"Entrar", nav_request:"Solicitar serviço",
+    hero_eyebrow:"CUIDADO PARA O SEU LAR", hero_title_1:"Você pede.", hero_title_2:"A gente cuida.", hero_text:"Serviços de limpeza e manutenção residencial com profissionais selecionados e acompanhamento da LARAPÊ em cada etapa.", hero_request:"Solicitar um serviço →", hero_how:"Como funciona", trust_selected:"Profissionais selecionados", trust_supported:"Atendimento acompanhado", hero_card_title:"Seu lar em boas mãos", hero_card_subtitle:"Limpeza e manutenção",
+    services_eyebrow:"NOSSOS SERVIÇOS", services_title:"O que sua casa precisa hoje?", services_text:"Escolha um serviço e conte para a gente como podemos ajudar.", service_cleaning:"Limpeza", service_cleaning_small:"Residencial, pesada e mais", service_maintenance:"Manutenção", service_maintenance_small:"Cuidados e pequenos reparos", service_ac:"Ar-condicionado", service_electric:"Elétrica", service_plumbing:"Hidráulica", service_garden:"Jardim", coming_soon:"Em breve",
+    how_eyebrow:"SIMPLES E TRANQUILO", how_title:"Como funciona?", how_text:"Da solicitação até o serviço concluído, a LARAPÊ acompanha tudo.", step1_title:"Você solicita", step1_text:"Conte o que sua casa precisa, escolha o endereço e a melhor data.", step2_title:"A gente organiza", step2_text:"A LARAPÊ analisa o pedido e seleciona uma profissional adequada.", step3_title:"Seu lar recebe cuidado", step3_text:"Você acompanha o pedido até a conclusão do atendimento.",
+    about_title1:"Mais cuidado.", about_title2:"Mais tranquilidade.", about_text:"A LARAPÊ nasceu para tornar mais simples encontrar serviços para o lar. Nossa proposta é unir praticidade, proximidade e acompanhamento.", about_button:"Quero cuidar da minha casa", badge1:"Profissionais<br>selecionados", badge2:"Atendimento<br>acompanhado", badge3:"Experiência<br>simples",
+    career_eyebrow:"FAÇA PARTE DA LARAPÊ", career_title:"Quer trabalhar com a gente?", career_text:"Estamos formando uma equipe de profissionais para atender nossos clientes com cuidado, responsabilidade e qualidade.", career_point1:"Cadastro do seu perfil profissional", career_point2:"Envio do currículo para nossa equipe", career_point3:"Entrevista antes da aprovação", career_name_label:"Nome completo *", career_phone_label:"WhatsApp *", career_city_label:"Cidade/Bairro *", career_area_label:"Área de interesse *", select:"Selecione", area_cleaning:"Faxina / Limpeza", area_maintenance:"Manutenção", area_both:"Ambos", career_exp_label:"Experiência profissional *", career_avail_label:"Disponibilidade *", career_cv_label:"Currículo *", career_cv_help:"Envie seu currículo em PDF.", career_notes_label:"Observações", career_consent:"Autorizo a LARAPÊ a utilizar os dados enviados para fins de seleção e contato profissional.", career_submit:"Enviar meu currículo →", career_note:"Após o envio, nossa equipe poderá entrar em contato para uma entrevista. O cadastro não garante aprovação na equipe.",
+    cta_eyebrow:"COMECE AGORA", cta_title:"O que sua casa precisa?", cta_text:"Solicite um serviço e deixe o resto com a LARAPÊ.", cta_button:"Solicitar serviço →", footer_text:"Serviços de limpeza e manutenção do lar",
+    modal_eyebrow:"NOVO PEDIDO", modal_title:"Solicitar serviço", wizard1_text:"Primeiro, escolha o que você precisa.", choice_cleaning:"Cuidados para sua casa", choice_maintenance:"Pequenos reparos e cuidados", wizard2_text:"Conte um pouco mais sobre o serviço.", detail_label:"Tipo de atendimento", detail_residential:"Limpeza residencial", detail_heavy:"Limpeza pesada", detail_general:"Manutenção geral", detail_other:"Outro", obs_label:"Observações", obs_ph:"Ex.: quantidade de quartos, alguma necessidade especial...", back:"← Voltar", continue:"Continuar →", wizard3_text:"Onde e quando você gostaria do atendimento?", address_label:"Endereço", address_ph:"Rua, número, bairro", date_label:"Data", time_label:"Horário", wizard4_text:"Por fim, como podemos falar com você?", name_label:"Nome", name_ph:"Seu nome", whatsapp_label:"WhatsApp", send_request:"Enviar pedido ✓",
+    invalid_cv:"O currículo deve estar em PDF.", cv_size:"O currículo deve ter no máximo 5 MB.", no_cv:"Anexe seu currículo em PDF.", fill_contact:"Preencha nome e WhatsApp para continuar.", request_ok:"Pedido iniciado com sucesso. ✨", career_ok:"Currículo recebido! Nossa equipe poderá entrar em contato. ✨", summary_title:"Resumo do pedido", summary_address:"A definir", summary_date:"A definir", summary_time:"A definir"
+  },
+  es: {
+    nav_services:"Servicios", nav_how:"Cómo funciona", nav_about:"Sobre LARAPÊ", nav_careers:"Trabaja con nosotros", nav_login:"Ingresar", nav_request:"Solicitar servicio",
+    hero_eyebrow:"CUIDADO PARA TU HOGAR", hero_title_1:"Tú pides.", hero_title_2:"Nosotros cuidamos.", hero_text:"Servicios de limpieza y mantenimiento residencial con profesionales seleccionados y seguimiento de LARAPÊ en cada etapa.", hero_request:"Solicitar un servicio →", hero_how:"Cómo funciona", trust_selected:"Profesionales seleccionados", trust_supported:"Atención acompañada", hero_card_title:"Tu hogar en buenas manos", hero_card_subtitle:"Limpieza y mantenimiento",
+    services_eyebrow:"NUESTROS SERVICIOS", services_title:"¿Qué necesita tu casa hoy?", services_text:"Elige un servicio y cuéntanos cómo podemos ayudarte.", service_cleaning:"Limpieza", service_cleaning_small:"Residencial, profunda y más", service_maintenance:"Mantenimiento", service_maintenance_small:"Cuidados y pequeñas reparaciones", service_ac:"Aire acondicionado", service_electric:"Electricidad", service_plumbing:"Fontanería", service_garden:"Jardinería", coming_soon:"Próximamente",
+    how_eyebrow:"SIMPLE Y TRANQUILO", how_title:"¿Cómo funciona?", how_text:"Desde la solicitud hasta el servicio terminado, LARAPÊ acompaña todo el proceso.", step1_title:"Tú solicitas", step1_text:"Cuéntanos qué necesita tu hogar, elige la dirección y la mejor fecha.", step2_title:"Nosotros organizamos", step2_text:"LARAPÊ analiza la solicitud y selecciona una profesional adecuada.", step3_title:"Tu hogar recibe cuidado", step3_text:"Acompañas la solicitud hasta la finalización del servicio.",
+    about_title1:"Más cuidado.", about_title2:"Más tranquilidad.", about_text:"LARAPÊ nació para hacer más sencillo encontrar servicios para el hogar. Nuestra propuesta une practicidad, cercanía y seguimiento.", about_button:"Quiero cuidar mi casa", badge1:"Profesionales<br>seleccionados", badge2:"Atención<br>acompañada", badge3:"Experiencia<br>simple",
+    career_eyebrow:"FORMA PARTE DE LARAPÊ", career_title:"¿Quieres trabajar con nosotros?", career_text:"Estamos formando un equipo de profesionales para atender a nuestros clientes con cuidado, responsabilidad y calidad.", career_point1:"Registro de tu perfil profesional", career_point2:"Envío de tu currículum a nuestro equipo", career_point3:"Entrevista antes de la aprobación", career_name_label:"Nombre completo *", career_phone_label:"WhatsApp *", career_city_label:"Ciudad/Barrio *", career_area_label:"Área de interés *", select:"Selecciona", area_cleaning:"Limpieza", area_maintenance:"Mantenimiento", area_both:"Ambos", career_exp_label:"Experiencia profesional *", career_avail_label:"Disponibilidad *", career_cv_label:"Currículum *", career_cv_help:"Envía tu currículum en PDF.", career_notes_label:"Observaciones", career_consent:"Autorizo a LARAPÊ a utilizar los datos enviados para fines de selección y contacto profesional.", career_submit:"Enviar mi currículum →", career_note:"Después del envío, nuestro equipo podrá contactarte para una entrevista. El registro no garantiza la aprobación en el equipo.",
+    cta_eyebrow:"COMIENZA AHORA", cta_title:"¿Qué necesita tu casa?", cta_text:"Solicita un servicio y deja el resto en manos de LARAPÊ.", cta_button:"Solicitar servicio →", footer_text:"Servicios de limpieza y mantenimiento del hogar",
+    modal_eyebrow:"NUEVO PEDIDO", modal_title:"Solicitar servicio", wizard1_text:"Primero, elige lo que necesitas.", choice_cleaning:"Cuidados para tu hogar", choice_maintenance:"Pequeñas reparaciones y cuidados", wizard2_text:"Cuéntanos un poco más sobre el servicio.", detail_label:"Tipo de atención", detail_residential:"Limpieza residencial", detail_heavy:"Limpieza profunda", detail_general:"Mantenimiento general", detail_other:"Otro", obs_label:"Observaciones", obs_ph:"Ej.: cantidad de habitaciones, alguna necesidad especial...", back:"← Volver", continue:"Continuar →", wizard3_text:"¿Dónde y cuándo te gustaría recibir el servicio?", address_label:"Dirección", address_ph:"Calle, número, barrio", date_label:"Fecha", time_label:"Horario", wizard4_text:"Por último, ¿cómo podemos contactarte?", name_label:"Nombre", name_ph:"Tu nombre", whatsapp_label:"WhatsApp", send_request:"Enviar pedido ✓",
+    invalid_cv:"El currículum debe estar en PDF.", cv_size:"El currículum debe tener como máximo 5 MB.", no_cv:"Adjunta tu currículum en PDF.", fill_contact:"Completa nombre y WhatsApp para continuar.", request_ok:"Solicitud iniciada correctamente. ✨", career_ok:"¡Currículum recibido! Nuestro equipo podrá contactarte. ✨", summary_title:"Resumen del pedido", summary_address:"Por definir", summary_date:"Por definir", summary_time:"Por definir"
+  }
+};
+
+let lang = localStorage.getItem("larapeLanguage") || "pt";
+function t(key){return (translations[lang] && translations[lang][key]) || translations.pt[key] || key;}
+function applyLanguage(next){
+  lang=next; localStorage.setItem("larapeLanguage",lang);
+  document.documentElement.lang=lang === "es" ? "es" : "pt-BR";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{el.innerHTML=t(el.dataset.i18n);});
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder);});
+  document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  document.title = lang === "es" ? "LARAPÊ | Tú pides. Nosotros cuidamos." : "LARAPÊ | Você pede. A gente cuida.";
   updateWizard();
-  modal.classList.add("show");
-  document.body.style.overflow = "hidden";
 }
 
-function selectService(service) {
-  openWizard(service);
+document.querySelectorAll(".lang-btn").forEach(btn=>btn.addEventListener("click",()=>applyLanguage(btn.dataset.lang)));
+
+function openWizard(service="Limpeza"){selectedService=service;currentStep=1;document.querySelectorAll(".choice").forEach(b=>b.classList.toggle("selected",b.dataset.service===service));updateWizard();modal.classList.add("show");document.body.style.overflow="hidden";}
+function selectService(service){openWizard(service);}
+function chooseService(service){selectedService=service;document.querySelectorAll(".choice").forEach(b=>b.classList.toggle("selected",b.dataset.service===service));setTimeout(()=>nextStep(),180);}
+function updateWizard(){
+  document.querySelectorAll(".wizard-step").forEach(step=>step.classList.toggle("active",Number(step.dataset.step)===currentStep));
+  document.getElementById("stepCount").textContent=`${currentStep} ${lang==='es'?'de':'de'} 4`;
+  document.getElementById("progressBar").style.width=`${currentStep*25}%`;
+  const titleKey={1:"modal_title",2:"wizard2_text",3:"wizard3_text",4:"wizard4_text"}[currentStep];
+  if(currentStep===1)document.getElementById("modalTitle").textContent=t("modal_title");
+  else if(currentStep===2)document.getElementById("modalTitle").textContent=t("wizard2_text");
+  else if(currentStep===3)document.getElementById("modalTitle").textContent=t("wizard3_text");
+  else {document.getElementById("modalTitle").textContent=t("wizard4_text");updateSummary();}
 }
+function nextStep(){if(currentStep<4){currentStep++;updateWizard();}}
+function prevStep(){if(currentStep>1){currentStep--;updateWizard();}}
+function updateSummary(){const type=document.getElementById("detailType").value;const address=document.getElementById("address").value||t("summary_address");const date=document.getElementById("date").value||t("summary_date");const time=document.getElementById("time").value||t("summary_time");document.getElementById("summary").innerHTML=`<strong>${t("summary_title")}</strong><br>${lang==='es'?'Servicio':'Serviço'}: ${selectedService}<br>${lang==='es'?'Atención':'Atendimento'}: ${type}<br>${t("address_label")}: ${address}<br>${t("date_label")}: ${date} · ${t("time_label")}: ${time}`;}
+function finishRequest(){const name=document.getElementById("name").value.trim();const phone=document.getElementById("phone").value.trim();if(!name||!phone){showToast(t("fill_contact"));return;}closeModal();showToast(t("request_ok"));}
+function closeModal(){modal.classList.remove("show");document.body.style.overflow="";}
+function showToast(message){toast.textContent=message;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3000);}
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal();});
+document.getElementById("menuBtn").addEventListener("click",()=>document.getElementById("mobileMenu").classList.toggle("open"));
+document.querySelectorAll(".mobile-menu a").forEach(a=>a.addEventListener("click",()=>document.getElementById("mobileMenu").classList.remove("open")));
 
-function chooseService(service) {
-  selectedService = service;
-  document.querySelectorAll(".choice").forEach(b => b.classList.toggle("selected", b.dataset.service === service));
-  setTimeout(() => nextStep(), 180);
-}
+document.getElementById("careerForm").addEventListener("submit",e=>{e.preventDefault();const cv=document.getElementById("careerCv").files[0];if(!cv){showToast(t("no_cv"));return;}if(cv.type!=="application/pdf"&&!cv.name.toLowerCase().endsWith(".pdf")){showToast(t("invalid_cv"));return;}if(cv.size>5*1024*1024){showToast(t("cv_size"));return;}const candidate={id:Date.now(),name:document.getElementById("careerName").value.trim(),phone:document.getElementById("careerPhone").value.trim(),city:document.getElementById("careerCity").value.trim(),area:document.getElementById("careerArea").value,experience:document.getElementById("careerExperience").value.trim(),availability:document.getElementById("careerAvailability").value.trim(),notes:document.getElementById("careerNotes").value.trim(),cvName:cv.name,status:"Em análise",createdAt:new Date().toLocaleString(lang==='es'?"es-BR":"pt-BR")};const candidates=JSON.parse(localStorage.getItem("larapeCandidates")||"[]");candidates.unshift(candidate);localStorage.setItem("larapeCandidates",JSON.stringify(candidates));document.getElementById("careerForm").reset();showToast(t("career_ok"));});
 
-function updateWizard() {
-  document.querySelectorAll(".wizard-step").forEach(step => {
-    step.classList.toggle("active", Number(step.dataset.step) === currentStep);
-  });
-  document.getElementById("stepCount").textContent = `${currentStep} de 4`;
-  document.getElementById("progressBar").style.width = `${currentStep * 25}%`;
-
-  if (currentStep === 1) {
-    document.getElementById("modalTitle").textContent = "Solicitar serviço";
-  } else if (currentStep === 2) {
-    document.getElementById("modalTitle").textContent = "Detalhes do serviço";
-  } else if (currentStep === 3) {
-    document.getElementById("modalTitle").textContent = "Local e horário";
-  } else {
-    document.getElementById("modalTitle").textContent = "Seus dados";
-    updateSummary();
-  }
-}
-
-function nextStep() {
-  if (currentStep < 4) {
-    currentStep++;
-    updateWizard();
-  }
-}
-
-function prevStep() {
-  if (currentStep > 1) {
-    currentStep--;
-    updateWizard();
-  }
-}
-
-function updateSummary() {
-  const type = document.getElementById("detailType").value;
-  const address = document.getElementById("address").value || "A definir";
-  const date = document.getElementById("date").value || "A definir";
-  const time = document.getElementById("time").value || "A definir";
-  document.getElementById("summary").innerHTML =
-    `<strong>Resumo do pedido</strong><br>
-     Serviço: ${selectedService}<br>
-     Atendimento: ${type}<br>
-     Endereço: ${address}<br>
-     Data: ${date} · ${time}`;
-}
-
-function finishRequest() {
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-
-  if (!name || !phone) {
-    showToast("Preencha nome e WhatsApp para continuar.");
-    return;
-  }
-
-  closeModal();
-  showToast("Pedido iniciado com sucesso. ✨");
-}
-
-function closeModal() {
-  modal.classList.remove("show");
-  document.body.style.overflow = "";
-}
-
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 3000);
-}
-
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) closeModal();
-});
-
-document.getElementById("menuBtn").addEventListener("click", () => {
-  document.getElementById("mobileMenu").classList.toggle("open");
-});
-
-document.querySelectorAll(".mobile-menu a").forEach(a => {
-  a.addEventListener("click", () => document.getElementById("mobileMenu").classList.remove("open"));
-});
-
-
-// Formulário de candidatura
-document.getElementById("careerForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const cv = document.getElementById("careerCv").files[0];
-  if (!cv) { showToast("Anexe seu currículo em PDF."); return; }
-  if (cv.type !== "application/pdf" && !cv.name.toLowerCase().endsWith(".pdf")) { showToast("O currículo deve estar em PDF."); return; }
-  if (cv.size > 5 * 1024 * 1024) { showToast("O currículo deve ter no máximo 5 MB."); return; }
-
-  const candidate = {
-    id: Date.now(),
-    name: document.getElementById("careerName").value.trim(),
-    phone: document.getElementById("careerPhone").value.trim(),
-    city: document.getElementById("careerCity").value.trim(),
-    area: document.getElementById("careerArea").value,
-    experience: document.getElementById("careerExperience").value.trim(),
-    availability: document.getElementById("careerAvailability").value.trim(),
-    notes: document.getElementById("careerNotes").value.trim(),
-    cvName: cv.name,
-    status: "Em análise",
-    createdAt: new Date().toLocaleString("pt-BR")
-  };
-
-  const candidates = JSON.parse(localStorage.getItem("larapeCandidates") || "[]");
-  candidates.unshift(candidate);
-  localStorage.setItem("larapeCandidates", JSON.stringify(candidates));
-  document.getElementById("careerForm").reset();
-  showToast("Currículo recebido! Nossa equipe poderá entrar em contato. ✨");
-});
+applyLanguage(lang);
